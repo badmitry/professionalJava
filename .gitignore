@@ -1,0 +1,9 @@
+/.idea/
+/out/
+/target/
+*.iml
+# Project exclude paths
+/client/target/
+/hw1Jenerics/target/
+/hw4Threats/target/
+/server/target/

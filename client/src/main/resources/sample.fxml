@@ -1,0 +1,35 @@
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Label?>
+<VBox fx:controller="Controller"
+      xmlns:fx="http://javafx.com/fxml" alignment="center">
+
+    <VBox fx:id="authPanel" managed="true">
+        <HBox>
+            <TextField fx:id="loginField" HBox.hgrow="ALWAYS" promptText="login"/>
+            <PasswordField fx:id="passwordField" HBox.hgrow="ALWAYS" promptText="password"
+                           onAction="#tryToAuth"/>
+        </HBox>
+        <HBox>
+            <Button text="LogIn" onAction="#tryToAuth" minWidth="150"/>
+            <Button text="Registr/ChName" onAction="#showRegWindow" minWidth="150"/>
+        </HBox>
+    </VBox>
+    <HBox VBox.vgrow="ALWAYS">
+        <TextArea fx:id="textArea" editable="false"/>
+        <ListView fx:id="listView" editable="false" visible="false" managed="false" minWidth="100"
+                  onMouseClicked="#clickUserFromList"/>
+    </HBox>
+
+
+    <HBox fx:id="msgPanel" managed="false" visible="false">
+        <TextField fx:id="textField" HBox.hgrow="ALWAYS" onAction="#sendMsg"/>
+        <Button text="send" onAction="#sendMsg"/>
+        <Button text="users" onAction="#showUserList"/>
+    </HBox>
+</VBox>
