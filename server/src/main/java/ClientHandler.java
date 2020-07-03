@@ -2,6 +2,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.logging.Level;
 
 public class ClientHandler {
     private Server server;
@@ -32,6 +33,7 @@ public class ClientHandler {
                             String str = inputStream.readUTF();
 
                             if (str.startsWith("/auth ")) {
+                                server.createLogMsg(Level.INFO,"Клиент отправил запрос на аутонтификацию");
                                 socket.setSoTimeout(120000);
                                 String[] token = str.split(" ");
 
@@ -62,6 +64,7 @@ public class ClientHandler {
                                     }
                                 }
                             } else if (str.startsWith("/reg ")) {
+                                server.createLogMsg(Level.INFO,"Клиент отправил запрос на регистрацию");
                                 String[] token = str.split(" ");
 
                                 if (token.length < 4) {
@@ -71,6 +74,7 @@ public class ClientHandler {
                                 boolean succeed = server.getAuthService().registration(token[1], token[2], token[3]);
                                 if (succeed) {
                                     sendMsg("Регистрация успешно прошла.");
+                                    server.createLogMsg(Level.INFO,"Создан новый пользователь: " + token[3]);
                                 } else {
                                     sendMsg("Login или nickName заняты. \nПопробуйте снова!");
                                 }
@@ -94,9 +98,6 @@ public class ClientHandler {
                                         sendMsg("Имя успешно изменено.");
                                     }
                                 }
-
-
-
                             }
 
                         }

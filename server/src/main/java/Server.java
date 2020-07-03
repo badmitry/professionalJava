@@ -5,13 +5,25 @@ import java.util.List;
 import java.util.Vector;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.logging.*;
 
 public class Server {
   private List<ClientHandler> clients;
   private AuthService authService;
   public ExecutorService executorService;
+  private Logger logger;
+  private Handler fileHandler;
 
   public Server() {
+    logger = Logger.getLogger(Server.class.getName());
+    try {
+      fileHandler = new FileHandler("server/src/main/resources/serverLog%g.log", 1*1024,5, true);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    fileHandler.setFormatter(new SimpleFormatter());
+    fileHandler.setLevel(Level.ALL);
+    logger.addHandler(fileHandler);
     clients = new Vector<>();
     authService = new SimpleAuthService();
     ServerSocket serverSocket = null;
@@ -20,11 +32,11 @@ public class Server {
 
     try {
       serverSocket = new ServerSocket(PORT);
-      System.out.println("Сервер запущен");
+      createLogMsg(Level.INFO, "Сервер запущен");
       executorService = Executors.newCachedThreadPool();
       while (true) {
         socket = serverSocket.accept();
-        System.out.println("Клиент подключился");
+        createLogMsg(Level.INFO,"Клиент подключился");
         new ClientHandler(this, socket);
 
       }
@@ -39,6 +51,10 @@ public class Server {
       }
     }
 
+  }
+
+  public void createLogMsg(Level level, String Msg){
+    logger.log(level,Msg);
   }
 
   public void broadcastMsg(String msg) {
@@ -81,11 +97,13 @@ public class Server {
 
   public void subscribe (ClientHandler clientHandler) {
     clients.add(clientHandler);
+    createLogMsg(Level.INFO, clientHandler.getNick()+" подключился");
     sendListUsers();
   }
 
   public void unsubscribe (ClientHandler clientHandler) {
     clients.remove(clientHandler);
+    createLogMsg(Level.INFO, clientHandler.getNick()+" отключился");
     sendListUsers();
   }
 

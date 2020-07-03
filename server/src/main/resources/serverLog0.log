@@ -1,0 +1,8 @@
+июл. 03, 2020 4:11:19 PM Server createLogMsg
+INFO: Создан новый пользователь: 6
+июл. 03, 2020 4:11:27 PM Server createLogMsg
+INFO: Клиент отправил запрос на аутонтификацию
+июл. 03, 2020 4:11:27 PM Server createLogMsg
+INFO: 6 подключился
+июл. 03, 2020 4:12:22 PM Server createLogMsg
+INFO: 6 отключился
