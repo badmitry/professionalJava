@@ -23,7 +23,7 @@ public class MassTestCutArray {
         return Arrays.asList(new Object[][]{
                 {new int[]{1, 2, 3, 4, 5, 6}, new int[]{5, 6}},
                 {new int[]{1, 2, 3, 4, -5, 6}, new int[]{-5, 6}},
-                {new int[]{3, 3, 5, 4}, new int[0]}
+                {new int[]{3, 3, 5, 4}, new int[0]},
         });
     }
 

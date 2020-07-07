@@ -3,12 +3,14 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ClientHandler {
     private Server server;
     private Socket socket;
     private DataInputStream inputStream;
     private DataOutputStream outputStream;
+    private Logger logger;
 
     private String nick;
     private String login;
@@ -21,6 +23,7 @@ public class ClientHandler {
     public ClientHandler(Server server, Socket socket) {
         this.server = server;
         this.socket = socket;
+        logger = Logger.getLogger(this.getClass().getName());
         try {
             inputStream = new DataInputStream(socket.getInputStream());
             outputStream = new DataOutputStream(socket.getOutputStream());
@@ -33,7 +36,7 @@ public class ClientHandler {
                             String str = inputStream.readUTF();
 
                             if (str.startsWith("/auth ")) {
-                                server.createLogMsg(Level.INFO,"Клиент отправил запрос на аутонтификацию");
+                                logger.log(Level.INFO,"Клиент отправил запрос на аутонтификацию");
                                 socket.setSoTimeout(120000);
                                 String[] token = str.split(" ");
 
@@ -64,7 +67,7 @@ public class ClientHandler {
                                     }
                                 }
                             } else if (str.startsWith("/reg ")) {
-                                server.createLogMsg(Level.INFO,"Клиент отправил запрос на регистрацию");
+                                logger.log(Level.INFO,"Клиент отправил запрос на регистрацию");
                                 String[] token = str.split(" ");
 
                                 if (token.length < 4) {
@@ -74,7 +77,7 @@ public class ClientHandler {
                                 boolean succeed = server.getAuthService().registration(token[1], token[2], token[3]);
                                 if (succeed) {
                                     sendMsg("Регистрация успешно прошла.");
-                                    server.createLogMsg(Level.INFO,"Создан новый пользователь: " + token[3]);
+                                    logger.log(Level.INFO,"Создан новый пользователь: " + token[3]);
                                 } else {
                                     sendMsg("Login или nickName заняты. \nПопробуйте снова!");
                                 }

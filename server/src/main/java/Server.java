@@ -15,7 +15,7 @@ public class Server {
   private Handler fileHandler;
 
   public Server() {
-    logger = Logger.getLogger(Server.class.getName());
+    logger = Logger.getLogger("");
     try {
       fileHandler = new FileHandler("server/src/main/resources/serverLog%g.log", 1*1024,5, true);
     } catch (IOException e) {
@@ -32,11 +32,11 @@ public class Server {
 
     try {
       serverSocket = new ServerSocket(PORT);
-      createLogMsg(Level.INFO, "Сервер запущен");
+      logger.log(Level.INFO, "Сервер запущен");
       executorService = Executors.newCachedThreadPool();
       while (true) {
         socket = serverSocket.accept();
-        createLogMsg(Level.INFO,"Клиент подключился");
+        logger.log(Level.INFO,"Клиент подключился");
         new ClientHandler(this, socket);
 
       }
@@ -51,10 +51,6 @@ public class Server {
       }
     }
 
-  }
-
-  public void createLogMsg(Level level, String Msg){
-    logger.log(level,Msg);
   }
 
   public void broadcastMsg(String msg) {
@@ -97,13 +93,13 @@ public class Server {
 
   public void subscribe (ClientHandler clientHandler) {
     clients.add(clientHandler);
-    createLogMsg(Level.INFO, clientHandler.getNick()+" подключился");
+    logger.log(Level.INFO, clientHandler.getNick()+" подключился");
     sendListUsers();
   }
 
   public void unsubscribe (ClientHandler clientHandler) {
     clients.remove(clientHandler);
-    createLogMsg(Level.INFO, clientHandler.getNick()+" отключился");
+    logger.log(Level.INFO, clientHandler.getNick()+" отключился");
     sendListUsers();
   }
 

@@ -6,3 +6,13 @@ INFO: Клиент отправил запрос на аутонтификаци
 INFO: 6 подключился
 июл. 03, 2020 4:12:22 PM Server createLogMsg
 INFO: 6 отключился
+июл. 07, 2020 9:42:03 AM Server <init>
+INFO: Сервер запущен
+июл. 07, 2020 9:42:52 AM Server <init>
+INFO: Клиент подключился
+июл. 07, 2020 9:42:52 AM ClientHandler$1 run
+INFO: Клиент отправил запрос на аутонтификацию
+июл. 07, 2020 9:42:52 AM Server subscribe
+INFO: 1 подключился
+июл. 07, 2020 9:43:31 AM Server unsubscribe
+INFO: 1 отключился
