@@ -1,18 +1,12 @@
-июл. 03, 2020 4:11:19 PM Server createLogMsg
-INFO: Создан новый пользователь: 6
-июл. 03, 2020 4:11:27 PM Server createLogMsg
-INFO: Клиент отправил запрос на аутонтификацию
-июл. 03, 2020 4:11:27 PM Server createLogMsg
-INFO: 6 подключился
-июл. 03, 2020 4:12:22 PM Server createLogMsg
-INFO: 6 отключился
-июл. 07, 2020 9:42:03 AM Server <init>
-INFO: Сервер запущен
-июл. 07, 2020 9:42:52 AM Server <init>
-INFO: Клиент подключился
-июл. 07, 2020 9:42:52 AM ClientHandler$1 run
-INFO: Клиент отправил запрос на аутонтификацию
-июл. 07, 2020 9:42:52 AM Server subscribe
+июл. 10, 2020 12:42:30 PM Server subscribe
 INFO: 1 подключился
-июл. 07, 2020 9:43:31 AM Server unsubscribe
+июл. 10, 2020 12:43:02 PM Server unsubscribe
+INFO: 1 отключился
+июл. 10, 2020 12:45:07 PM Server <init>
+INFO: Клиент подключился
+июл. 10, 2020 12:45:07 PM ClientHandler$1 run
+INFO: Клиент отправил запрос на аутонтификацию
+июл. 10, 2020 12:45:07 PM Server subscribe
+INFO: 1 подключился
+июл. 10, 2020 12:45:13 PM Server unsubscribe
 INFO: 1 отключился

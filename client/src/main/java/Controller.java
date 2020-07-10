@@ -56,7 +56,6 @@ public class Controller implements Initializable {
         if (!backupMsg.exists()){
             backupMsg.createNewFile();
         }
-        System.out.println(backupMsg.getAbsolutePath());
         FileWriter writer = new FileWriter(backupMsg,true);
         BufferedWriter bw = new BufferedWriter(writer);
         bw.write(msg);
