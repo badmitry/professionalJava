@@ -17,6 +17,23 @@
         <maven.compiler.target>14.0.1</maven.compiler.target>
     </properties>
 
+    <build>
+        <finalName>ChatClient</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>ClientStart.Main</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
     <dependencies>
         <dependency>
             <groupId>org.xerial</groupId>
